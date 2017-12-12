@@ -77,8 +77,14 @@ public class Retirement {
 		//
 		
 		double Retired = AnnualReturnRetired / 12;
-		int RetiredYears = YearsRetired*12;
+		int RetiredYears = YearsRetired * 12;
 		double Value = 0;
+		
+		if (Retired == 0) {
+			Value = TotalAmountSaved() / RetiredYears;
+		} else {
+			Value = TotalAmountSaved() * Retired / (Math.pow(1 + Retired, Retired) - 1);
+		}
 		
 		
 		return Value;
@@ -94,8 +100,13 @@ public class Retirement {
 		double WorkingYears = YearsToWork * 12;
 		double Value = 0;
 		
-	    
+		if (Working == 0) {
+			Value = TotalAmountSaved()/WorkingYears;
+	    }else {
+	    	Value = TotalAmountSaved()* Working
+	                  /(Math.pow(1+Working, WorkingYears)-1);
+	    }
 		return Value;
-	
+	    
 	}
 }
